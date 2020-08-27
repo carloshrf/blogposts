@@ -16,6 +16,10 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* blogpostsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* blogpostsTests.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9881DC6B25B34BF29A998E49 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E2303B0798142ABBCC23EAE /* Arial.ttf */; };
+		E354EA382EF44D9CBFD7C30A /* microsoft-yahei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E373B87C967D48758D76E7B7 /* microsoft-yahei.ttf */; };
+		351FEBCFDE724D05A86133CF /* PingFang-SC-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8C92B51626F4DCE87B4B94E /* PingFang-SC-Medium.ttf */; };
+		4E4DEEA996EA432BAF5B557F /* PingFang-SC-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D9560DF0C494DA1BEF39378 /* PingFang-SC-Semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = blogposts/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		1E2303B0798142ABBCC23EAE /* Arial.ttf */ = {isa = PBXFileReference; name = "Arial.ttf"; path = "../assets/fonts/Arial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E373B87C967D48758D76E7B7 /* microsoft-yahei.ttf */ = {isa = PBXFileReference; name = "microsoft-yahei.ttf"; path = "../assets/fonts/microsoft-yahei.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F8C92B51626F4DCE87B4B94E /* PingFang-SC-Medium.ttf */ = {isa = PBXFileReference; name = "PingFang-SC-Medium.ttf"; path = "../assets/fonts/PingFang-SC-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4D9560DF0C494DA1BEF39378 /* PingFang-SC-Semibold.ttf */ = {isa = PBXFileReference; name = "PingFang-SC-Semibold.ttf"; path = "../assets/fonts/PingFang-SC-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,7 @@
 				00E356EF1AD99517003FC87E /* blogpostsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				5B425F8A97EE4B9F8463E866 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -156,6 +165,18 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		5B425F8A97EE4B9F8463E866 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				1E2303B0798142ABBCC23EAE /* Arial.ttf */,
+				E373B87C967D48758D76E7B7 /* microsoft-yahei.ttf */,
+				F8C92B51626F4DCE87B4B94E /* PingFang-SC-Medium.ttf */,
+				4D9560DF0C494DA1BEF39378 /* PingFang-SC-Semibold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -295,6 +316,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				9881DC6B25B34BF29A998E49 /* Arial.ttf in Resources */,
+				E354EA382EF44D9CBFD7C30A /* microsoft-yahei.ttf in Resources */,
+				351FEBCFDE724D05A86133CF /* PingFang-SC-Medium.ttf in Resources */,
+				4E4DEEA996EA432BAF5B557F /* PingFang-SC-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
