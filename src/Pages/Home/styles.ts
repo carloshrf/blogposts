@@ -21,4 +21,6 @@ export const Main = styled.View`
   width: 100%;
 `;
 
-export const ModalText = styled.Text``;
+export const ModalText = styled.Text`
+  color: black;
+`;

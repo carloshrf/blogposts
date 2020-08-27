@@ -15,38 +15,37 @@ import { Container, SearchBar, Main, ModalText } from './styles';
 const Home: React.FC = () => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
 
+  function toggleModal(): void {
+    setModalIsVisible(!modalIsVisible);
+  }
+
   return (
     <Container>
       <SearchBar>
         <Input name="email" icon="mail" placeholder="Buscar" />
       </SearchBar>
-      
+
       <ScrollView>
         <Main>
-          <Post title="Titulo entitulado" onDelete={() => setModalIsVisible}>
-            Conteudo de qualidade emsad assadsad sadsad sad sadsadsad s sadsadsadsa sad as dsadsadsadsa dsadsadsa sad sadsad sadsadsad sad sadsadsa d sadsadsad
+          <Post title="Titulo entitulado" onDelete={() => {}}>
+            Conteudo de qualidade emsad assadsad sadsad sad sadsadsad s
+            sadsadsadsa sad as dsadsadsadsa dsadsadsa sad sadsad sadsadsad sad
+            sadsadsa d sadsadsad
           </Post>
         </Main>
       </ScrollView>
 
-    <AddButton />
+      <AddButton setModalIsVisible={toggleModal} />
 
-    <Modal
-      animationType="fade"
-      transparent={false}
-      visible={modalIsVisible}
-      onRequestClose={() => {
-        setModalIsVisible(false);
-      }}
-    >
-      <ModalText>Foi</ModalText>
-    </Modal>
-      {/* 
+      <Modal isVisible={modalIsVisible}>
+        <ModalText>Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello</ModalText>
+      </Modal>
+      {/*
       <Button onPress={() => {console.log('Apertou')}}>
         Entrar
       </Button> */}
     </Container>
   );
-}
+};
 
 export default Home;

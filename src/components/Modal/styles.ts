@@ -1,6 +1,9 @@
-import styled from 'styled-components';
-import { Modal } from 'react-native';
+import styled from 'styled-components/native';
+import { View } from 'react-native';
 
-export const Container = styled(Modal)`
+export const Container = styled.View`
+  width: 200px;
+  height: 100px;
 
+  background: red;
 `;
