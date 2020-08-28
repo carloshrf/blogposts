@@ -7,7 +7,7 @@ import Post from '../../components/Post';
 import AddButton from '../../components/AddButton';
 import CreatePostModal from '../../components/Modal/CreatePost';
 import DeletePostModal from '../../components/Modal/DeletePost';
-import SuccessModal from '../../components/Modal/Success';
+import InformationModal from '../../components/Modal/Information';
 
 import api from '../../services/api';
 
@@ -27,6 +27,7 @@ const Home: React.FC = () => {
   const [successDeleteModalIsVisible, setSuccessDeleteModalIsVisible] = useState(false);
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
   const [postToDelete, setPostToDelete] = useState(0);
+  const [addButtonIsDisabled, setAddButtonIsDisabled] = useState(true);
   const [newPost, setNewPost] = useState({
     body: '',
     title: '',
@@ -56,6 +57,15 @@ const Home: React.FC = () => {
     }).catch(() => console.log('ERROO!!!'));
   };
 
+  function verifyCreateContent() {
+    if (newPost.title && newPost.body) {
+      setAddButtonIsDisabled(false);
+    } else {
+      setAddButtonIsDisabled(true);
+    }
+    console.log(!!newPost.title, !!newPost.body);
+  }
+
   function handleInputTitleChanges(title: string): void {
     setNewPost({...newPost, title});
   } 
@@ -74,7 +84,7 @@ const Home: React.FC = () => {
         setDeleteModalIsVisible(false);
         setSuccessDeleteModalIsVisible(true);
       })
-      .catch(() => console.log('erro'));
+      .catch((err) => console.log(err));
   }
 
   function handleCreatePost(): void {
@@ -89,7 +99,13 @@ const Home: React.FC = () => {
       setSuccessCreateModalIsVisible(true);
     })
     .catch(() => console.log('ERROOOO!!!!'));
+
+    setAddButtonIsDisabled(true);
   }
+
+  useEffect(() => {
+    verifyCreateContent();
+  }, [newPost]);
 
   useEffect(() => {
     api.get('posts').then(response => {
@@ -129,8 +145,10 @@ const Home: React.FC = () => {
 
       <AddButton setModalIsVisible={toggleCreateModal} />
 
+          {console.log({homehasContent: addButtonIsDisabled})}
       <CreatePostModal 
-        visible={createModalIsVisible} 
+        visible={createModalIsVisible}
+        hasNoContent={addButtonIsDisabled}
         onClose={toggleCreateModal} 
         handleTitleChange={handleInputTitleChanges} 
         handleBodyChange={handleInputBodyChanges}
@@ -143,13 +161,13 @@ const Home: React.FC = () => {
         onDelete={handleDeletePost}
       />
 
-      <SuccessModal visible={successCreateModalIsVisible} onClose={toggleCreateSuccessModal}>
+      <InformationModal visible={successCreateModalIsVisible} onClose={toggleCreateSuccessModal}>
         Post adicionado com sucesso!
-      </SuccessModal>
+      </InformationModal>
 
-      <SuccessModal visible={successDeleteModalIsVisible} onClose={toggleDeleteSuccessModal}>
+      <InformationModal visible={successDeleteModalIsVisible} onClose={toggleDeleteSuccessModal}>
         Post removido com sucesso!
-      </SuccessModal>
+      </InformationModal>
       
     </Container>
   );

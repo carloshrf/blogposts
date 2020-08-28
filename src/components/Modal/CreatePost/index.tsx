@@ -17,6 +17,7 @@ import {
 
 interface ModalProperties extends ModalProps {
   visible: boolean;
+  hasNoContent?: boolean;
   onClose(): void;
   handleTitleChange(text: string): void;
   handleBodyChange(text: string): void;
@@ -24,7 +25,8 @@ interface ModalProperties extends ModalProps {
 }
 
 const Modal: React.FC<ModalProperties> = ({
-  visible, 
+  visible,
+  hasNoContent,
   onClose, 
   handleTitleChange, 
   handleBodyChange,
@@ -59,7 +61,8 @@ const Modal: React.FC<ModalProperties> = ({
           />
           <ButtonsContainer>
             <Button onPress={onClose} inverted={true}>Cancelar</Button>
-            <Button onPress={handleCreatePost}>Adicionar</Button>
+            {console.log({hasNoContent})}
+            <Button onPress={handleCreatePost} disabled={hasNoContent}>Adicionar</Button>
           </ButtonsContainer>
         </ModalContent>
       </Container>

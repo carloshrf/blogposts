@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 
 interface ButtonProperties {
   inverted?: boolean;
+  disabled?: boolean;
 }
 
 export const Container = styled(TouchableOpacity)<ButtonProperties>`
@@ -20,6 +21,11 @@ export const Container = styled(TouchableOpacity)<ButtonProperties>`
   ${({ inverted }) => inverted && css`
     background-color: #FFF !important;
   `}
+
+  ${({ disabled }) => disabled && css`
+    background-color: #D8D8D8;
+    border-color: #D8D8D8;
+  `}
 `;
 
 export const ButtonText = styled.Text<ButtonProperties>`
@@ -28,5 +34,9 @@ export const ButtonText = styled.Text<ButtonProperties>`
 
   ${({ inverted }) => inverted && css`
     color: #00C100;
+  `}
+
+  ${({ disabled }) => disabled && css`
+    color: #FFF !important;
   `}
 `;
