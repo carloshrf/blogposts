@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextInputProps } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { Container, TextInput } from './styles';
-
-
 
 interface InputProps extends TextInputProps {
   name: string;
@@ -15,7 +13,6 @@ interface InputProps extends TextInputProps {
 }
 
 const Input: React.FC<InputProps> = ({name, icon, marginBottom, height= 50, ...rest}) => {
-  const [inputFocus, setInputFocus] = useState(false);
 
   return(
     <Container style={{marginBottom: marginBottom, height: height}} >

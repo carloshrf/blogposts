@@ -4,7 +4,6 @@ import {
   Container, 
   Title, 
   Body, 
-  DeleteImage, 
   DeleteButton, 
   TitleContainer 
 } from './styles';
