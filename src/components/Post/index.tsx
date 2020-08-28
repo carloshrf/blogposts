@@ -7,12 +7,16 @@ import deleteIcon from '../../assets/icons/delete.png';
 interface PostProps {
   title: string;
   children: string;
-  onDelete(): void;
+  onDelete(id: number): void;
+  postId: number;
 }
 
-const Post: React.FC<PostProps> = ({title, children, onDelete}) => (
+const Post: React.FC<PostProps> = ({title, children, onDelete, postId}) => (
   <Container>
-    <DeleteButton  ><DeleteImage source={deleteIcon} /></DeleteButton>
+    <DeleteButton onPress={() => onDelete(postId)}>
+      <DeleteImage source={deleteIcon} />
+    </DeleteButton>
+    
     <Title>{title}</Title>
     <Body>{children}</Body>
   </Container>

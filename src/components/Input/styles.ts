@@ -1,5 +1,9 @@
 import styled from 'styled-components/native';
 
+// interface ContainerProps {
+//   height: number;
+// }
+
 export const Container = styled.View`
   width: 100%;
   height: 50px;
@@ -15,4 +19,5 @@ export const TextInput = styled.TextInput`
   color: #AFB380;
   flex: 1;
   font-size: 22px;
+  height: 40px;
 `;

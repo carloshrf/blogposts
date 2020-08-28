@@ -20,7 +20,3 @@ export const Main = styled.View`
   padding: 0 30px;
   width: 100%;
 `;
-
-export const ModalText = styled.Text`
-  color: black;
-`;

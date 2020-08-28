@@ -1,11 +1,10 @@
 import styled from 'styled-components/native';
-import { RectButton, RectButtonProperties } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableOpacityProperties } from 'react-native';
 
 export const Container = styled.View`
   width: 100%;
   background-color: #FFF;
   padding: 10px 20px 20px;
-
   position: relative;
 
   margin-bottom: 20px;
@@ -13,6 +12,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: 20px;
+  padding-right: 20px;
   padding-bottom: 10px;
 `;
 
@@ -26,7 +26,7 @@ export const DeleteImage = styled.Image`
   height: 25px;
 `; 
 
-export const DeleteButton= styled(RectButton)<RectButtonProperties>`
+export const DeleteButton= styled(TouchableOpacity)<TouchableOpacityProperties>`
   width: 30px;
   height: 30px;
 
