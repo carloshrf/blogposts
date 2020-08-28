@@ -30,7 +30,7 @@ Abaixo seguem algumas amostras das telas web.
 
 
 <p align="center">
-<img  src="https://github.com/carloshrf/blogposts/blob/master/public/images/create.png?raw=true"  width="600"/>
+<img  src="https://github.com/carloshrf/blogposts/blob/master/public/images/create.png?raw=true"  width="300"/>
 </p>
 
 <p align="center">
@@ -38,7 +38,7 @@ Abaixo seguem algumas amostras das telas web.
 </p>
 
 <p align="center">
-<img  src="https://github.com/carloshrf/blogposts/blob/master/public/images/home.png?raw=true"  width="600"/>
+<img  src="https://github.com/carloshrf/blogposts/blob/master/public/images/home.png?raw=true"  width="300"/>
 </p>
 
 <p align="center">
