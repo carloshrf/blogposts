@@ -9,6 +9,7 @@ export const Container = styled.View`
 export const ModalContent = styled.View`
   width: 300px;
   
+  align-items: flex-end;
   background: #FFF;
   border: 1px #00C100;
 
@@ -22,7 +23,8 @@ export const TitleContainer = styled.View`
 `
 
 export const ModalTitle = styled.Text`
-  font-size: 18px;
+  font-size: 20px;
+  text-align: center;
 `;
 
 export const ButtonsContainer = styled.View`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Modal as ModalContainer, ModalProps }  from 'react-native';
 
@@ -7,7 +7,13 @@ import Button from '../../Button';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { ModalTitle, Container, ModalContent, ButtonsContainer, TitleContainer } from './styles';
+import { 
+  ModalTitle, 
+  Container, 
+  ModalContent, 
+  ButtonsContainer, 
+  TitleContainer 
+} from './styles';
 
 interface ModalProperties extends ModalProps {
   visible: boolean;
@@ -46,13 +52,13 @@ const Modal: React.FC<ModalProperties> = ({
             height={120}
             marginBottom={20}
             name="texto" 
-            placeholder="Texto" 
+            placeholder="Texto"
             multiline={true}
             numberOfLines={4}
             onChangeText={(text) => handleBodyChange(text)} 
           />
           <ButtonsContainer>
-            <Button onPress={onClose}>Cancelar</Button>
+            <Button onPress={onClose} inverted={true}>Cancelar</Button>
             <Button onPress={handleCreatePost}>Adicionar</Button>
           </ButtonsContainer>
         </ModalContent>

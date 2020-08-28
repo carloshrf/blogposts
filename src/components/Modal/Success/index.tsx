@@ -4,7 +4,13 @@ import { Modal as ModalContainer, ModalProps }  from 'react-native';
 
 import Button from '../../Button';
 
-import { ModalTitle, Container, ModalContent, ButtonsContainer, TitleContainer } from './styles';
+import { 
+  ModalTitle, 
+  Container, 
+  ModalContent, 
+  ButtonsContainer, 
+  TitleContainer 
+} from './styles';
 
 interface ModalProperties extends ModalProps {
   visible: boolean;
@@ -29,7 +35,10 @@ const Modal: React.FC<ModalProperties> = ({
             </TitleContainer>
 
           <ButtonsContainer>
-            <Button onPress={() => onClose()}>Ok</Button>
+            <Button 
+              style={{height: 40, width: 50}}
+              onPress={() => onClose()}
+            >Ok</Button>
           </ButtonsContainer>
         </ModalContent>
       </Container>

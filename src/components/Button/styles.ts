@@ -1,7 +1,11 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 
-export const Container = styled(TouchableOpacity)`
+interface ButtonProperties {
+  inverted?: boolean;
+}
+
+export const Container = styled(TouchableOpacity)<ButtonProperties>`
   width: 100px;
   height: 32px;
 
@@ -12,9 +16,17 @@ export const Container = styled(TouchableOpacity)`
 
   justify-content: center;
   align-items: center;
+
+  ${({ inverted }) => inverted && css`
+    background-color: #FFF !important;
+  `}
 `;
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled.Text<ButtonProperties>`
   color: #FFF;
   font-family: 'Arial';
+
+  ${({ inverted }) => inverted && css`
+    color: #00C100;
+  `}
 `;

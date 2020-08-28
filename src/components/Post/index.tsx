@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Container, Title, Body, DeleteImage, DeleteButton, TitleContainer } from './styles';
+import { 
+  Container, 
+  Title, 
+  Body, 
+  DeleteImage, 
+  DeleteButton, 
+  TitleContainer 
+} from './styles';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 

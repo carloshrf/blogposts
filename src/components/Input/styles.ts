@@ -1,9 +1,5 @@
 import styled from 'styled-components/native';
 
-// interface ContainerProps {
-//   height: number;
-// }
-
 export const Container = styled.View`
   width: 100%;
 
@@ -12,7 +8,7 @@ export const Container = styled.View`
 
   flex-direction: row;
 
-  padding: 0 10px;
+  padding: 0 8px;
   background: #FFF;
 
 `;
@@ -20,7 +16,6 @@ export const Container = styled.View`
 export const TextInput = styled.TextInput`
   margin-top: 10px;
   padding-top: 5px;
-  /* background: red; */
 
   color: #AFB380;
   flex: 1;

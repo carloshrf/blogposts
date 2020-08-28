@@ -36,7 +36,6 @@ export const DeleteButton= styled(TouchableOpacity)<TouchableOpacityProperties>`
   width: 40px;
   height: 40px;
   
-  /* margin-left: 10px; */
   margin-right: 10px;
 
   padding: 5px;

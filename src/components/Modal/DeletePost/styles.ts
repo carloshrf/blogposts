@@ -18,6 +18,7 @@ export const ModalContent = styled.View`
 
 export const ModalTitle = styled.Text`
   font-size: 18px;
+  font-family: "PingFang-SC-Medium";
   text-align: center;
   padding-bottom: 30px;
 `;

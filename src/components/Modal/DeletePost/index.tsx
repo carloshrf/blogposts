@@ -24,7 +24,7 @@ const Modal: React.FC<ModalProperties> = ({
         <ModalContent>
           <ModalTitle>Deseja mesmo remover este post?</ModalTitle>
           <ButtonContainer>
-            <Button onPress={() => onClose(0)}>Cancelar</Button>
+            <Button onPress={() => onClose(0)} inverted={true}>Cancelar</Button>
             <Button onPress={() => onDelete()}>Remover</Button>
           </ButtonContainer>
         </ModalContent>
