@@ -17,7 +17,7 @@ const Post: React.FC<PostProps> = ({title, children, onDelete, postId}) => (
       <Title>{title}</Title>
 
       <DeleteButton onPress={() => onDelete(postId)}>
-        <Icon name="delete-forever" size={28} color="red" style={{marginLeft: -4}} />
+        <Icon name="delete-forever" size={28} color="red" />
       </DeleteButton>
     </TitleContainer>
 

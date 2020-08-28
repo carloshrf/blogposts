@@ -7,8 +7,7 @@ import Post from '../../components/Post';
 import AddButton from '../../components/AddButton';
 import CreatePostModal from '../../components/Modal/CreatePost';
 import DeletePostModal from '../../components/Modal/DeletePost';
-
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import SuccessModal from '../../components/Modal/Success';
 
 import api from '../../services/api';
 
@@ -24,6 +23,8 @@ interface PostsData {
 const Home: React.FC = () => {
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [createModalIsVisible, setCreateModalIsVisible] = useState(false);
+  const [successCreateModalIsVisible, setSuccessCreateModalIsVisible] = useState(false);
+  const [successDeleteModalIsVisible, setSuccessDeleteModalIsVisible] = useState(false);
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
   const [postToDelete, setPostToDelete] = useState(0);
   const [newPost, setNewPost] = useState({
@@ -36,13 +37,21 @@ const Home: React.FC = () => {
     setCreateModalIsVisible(!createModalIsVisible);
   }
 
+  function toggleCreateSuccessModal(): void {
+    setSuccessCreateModalIsVisible(!successCreateModalIsVisible);
+  }
+
+  function toggleDeleteSuccessModal(): void {
+    setSuccessDeleteModalIsVisible(!successDeleteModalIsVisible);
+  }
+
   function toggleDeleteModal(postId: number): void {
     setDeleteModalIsVisible(!deleteModalIsVisible);
     setPostToDelete(postId);
   }
 
   function filterPosts(text: string) {
-    api.get(`posts/?title=${text}`).then(({data}) => {
+    api.get(`posts/${!!text ? `?title=${text}` : ''}`).then(({data}) => {
       setPosts(data);
     }).catch(() => console.log('ERROO!!!'));
   };
@@ -62,6 +71,8 @@ const Home: React.FC = () => {
         const remainingPosts = posts.filter(post => post.id !== postToDelete);
         setPosts(remainingPosts);
         setPostToDelete(0);
+        setDeleteModalIsVisible(false);
+        setSuccessDeleteModalIsVisible(true);
       })
       .catch(() => console.log('erro'));
   }
@@ -73,7 +84,9 @@ const Home: React.FC = () => {
       }
     })
     .then(response => {
-      setPosts([...posts, response.data])
+      setPosts([...posts, response.data]);
+      setCreateModalIsVisible(false);
+      setSuccessCreateModalIsVisible(true);
     })
     .catch(() => console.log('ERROOOO!!!!'));
   }
@@ -91,7 +104,7 @@ const Home: React.FC = () => {
       <SearchBar>
         <Input 
           name="email" 
-          icon="mail" 
+          icon="text-box-search-outline" 
           placeholder="Buscar" 
           onChangeText={(text) => filterPosts(text)}
         />
@@ -129,6 +142,14 @@ const Home: React.FC = () => {
         onClose={toggleDeleteModal} 
         onDelete={handleDeletePost}
       />
+
+      <SuccessModal visible={successCreateModalIsVisible} onClose={toggleCreateSuccessModal}>
+        Post adicionado com sucesso!
+      </SuccessModal>
+
+      <SuccessModal visible={successDeleteModalIsVisible} onClose={toggleDeleteSuccessModal}>
+        Post removido com sucesso!
+      </SuccessModal>
       
     </Container>
   );

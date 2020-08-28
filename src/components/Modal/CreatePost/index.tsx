@@ -43,7 +43,7 @@ const Modal: React.FC<ModalProperties> = ({
             onChangeText={(text) => handleTitleChange(text)} 
           />
           <Input 
-            height={90}
+            height={120}
             marginBottom={20}
             name="texto" 
             placeholder="Texto" 

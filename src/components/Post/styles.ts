@@ -4,7 +4,7 @@ import { TouchableOpacity, TouchableOpacityProperties } from 'react-native';
 export const Container = styled.View`
   width: 100%;
   background-color: #FFF;
-  padding: 10px 20px 20px;
+  padding: 20px 20px 20px;
 
   margin-bottom: 20px;
 `;
@@ -36,9 +36,10 @@ export const DeleteButton= styled(TouchableOpacity)<TouchableOpacityProperties>`
   width: 40px;
   height: 40px;
   
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  margin-right: 10px;
 
-  padding: 10px;
+  padding: 5px;
 
   justify-content: center;
   align-items: center;
