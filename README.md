@@ -8,9 +8,31 @@ Aplicação mobile desenvolvida com React Native e typescript. Se baseia numa p�
 
 📘 Typescript
 
+## Rotas
+
+GET POST
+```bash
+/posts
+```
+GET
+```bash
+/posts/:id
+```
+
+Estrutura da resposta:
+```bash
+[
+  {
+    body: string;
+    title: string;
+    id: number;
+    userId: number;
+  }
+]
+```
 ## Como executar?
 
-É necessário ter instalado o node e o yarn (ou npm que já acompanha na instalação do node). 
+É necessário ter instalado o node e o yarn (ou npm que já acompanha na instalação do node) e o Android SDK para que o emulador seja chamado para preview do App. 
 
 Clonar o repositório e em cada pasta (web, server, mobile) executar pelo prompt 
 ```bash
@@ -24,8 +46,6 @@ para que então os repositórios necessários sejam baixados. Para executar os p
 ```bash
 yarn start ou npm start
 ```
-De acordo com o projeto, originalmente os serviços, backend e frontend serão executados no endereço local nas portas 3333 e 3000 respectivamente.
-
 Abaixo seguem algumas amostras das telas web.
 
 
