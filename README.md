@@ -8,6 +8,8 @@ Aplicação mobile desenvolvida com React Native e typescript. Se baseia numa p�
 
 📘 Typescript
 
+💅 Styled-components
+
 ## Rotas
 
 GET POST
