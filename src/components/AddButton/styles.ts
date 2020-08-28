@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 
-export const Button = styled(RectButton)`
+export const Button = styled(TouchableOpacity)`
   position: absolute; 
 
   height: 60px;
   width: 60px;
 
-  border: 2px #AFB3B0;
+  border: 1px #AFB3B0;
   border-radius: 50px;
   background: #FFF;
 

@@ -1,12 +1,13 @@
 import React from 'react';
-import {RectButton} from 'react-native-gesture-handler';
 
 import { Modal as ModalContainer, ModalProps }  from 'react-native';
 
 import Input from '../../Input';
 import Button from '../../Button';
 
-import { ModalTitle, Container, ModalContent } from './styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { ModalTitle, Container, ModalContent, ButtonsContainer, TitleContainer } from './styles';
 
 interface ModalProperties extends ModalProps {
   visible: boolean;
@@ -27,20 +28,33 @@ const Modal: React.FC<ModalProperties> = ({
   return (
     <ModalContainer visible={visible} transparent={true}>
       <Container>
-        <ModalContent>
-          <ModalTitle>Adicionar novo post</ModalTitle>
+          <ModalContent>
+            <TitleContainer>
+              <Icon name="plus" size={30} style={{paddingRight: 5}}/>
+
+              <ModalTitle>
+                Adicionar novo post
+              </ModalTitle>
+            </TitleContainer>
           <Input 
+            marginBottom={20}
             name="titulo" 
             placeholder="Título" 
             onChangeText={(text) => handleTitleChange(text)} 
           />
           <Input 
+            height={90}
+            marginBottom={20}
             name="texto" 
             placeholder="Texto" 
+            multiline={true}
+            numberOfLines={4}
             onChangeText={(text) => handleBodyChange(text)} 
           />
-          <Button onPress={onClose}>Cancelar</Button>
-          <Button onPress={handleCreatePost}>Adicionar</Button>
+          <ButtonsContainer>
+            <Button onPress={onClose}>Cancelar</Button>
+            <Button onPress={handleCreatePost}>Adicionar</Button>
+          </ButtonsContainer>
         </ModalContent>
       </Container>
     </ModalContainer>

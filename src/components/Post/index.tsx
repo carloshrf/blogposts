@@ -1,23 +1,26 @@
 import React from 'react';
 
-import { Container, Title, Body, DeleteImage, DeleteButton } from './styles';
+import { Container, Title, Body, DeleteImage, DeleteButton, TitleContainer } from './styles';
 
-import deleteIcon from '../../assets/icons/delete.png';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-interface PostProps {
+export interface PostProps {
   title: string;
   children: string;
-  onDelete(id: number): void;
+  onDelete(postId: number): void;
   postId: number;
 }
 
 const Post: React.FC<PostProps> = ({title, children, onDelete, postId}) => (
-  <Container>
-    <DeleteButton onPress={() => onDelete(postId)}>
-      <DeleteImage source={deleteIcon} />
-    </DeleteButton>
-    
-    <Title>{title}</Title>
+  <Container>    
+    <TitleContainer>
+      <Title>{title}</Title>
+
+      <DeleteButton onPress={() => onDelete(postId)}>
+        <Icon name="delete-forever" size={28} color="red" style={{marginLeft: -4}} />
+      </DeleteButton>
+    </TitleContainer>
+
     <Body>{children}</Body>
   </Container>
 );

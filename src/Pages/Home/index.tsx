@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { ScrollView, TouchableOpacity, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 import Post from '../../components/Post';
 import AddButton from '../../components/AddButton';
 import CreatePostModal from '../../components/Modal/CreatePost';
+import DeletePostModal from '../../components/Modal/DeletePost';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -24,18 +24,25 @@ interface PostsData {
 const Home: React.FC = () => {
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [createModalIsVisible, setCreateModalIsVisible] = useState(false);
+  const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
+  const [postToDelete, setPostToDelete] = useState(0);
   const [newPost, setNewPost] = useState({
     body: '',
     title: '',
     userId: 1,
   });
 
-  function toggleModal(): void {
+  function toggleCreateModal(): void {
     setCreateModalIsVisible(!createModalIsVisible);
   }
 
-  async function filterPosts(text: string) {
-    await api.get(`posts/?title=${text}`).then(({data}) => {
+  function toggleDeleteModal(postId: number): void {
+    setDeleteModalIsVisible(!deleteModalIsVisible);
+    setPostToDelete(postId);
+  }
+
+  function filterPosts(text: string) {
+    api.get(`posts/?title=${text}`).then(({data}) => {
       setPosts(data);
     }).catch(() => console.log('ERROO!!!'));
   };
@@ -48,11 +55,13 @@ const Home: React.FC = () => {
     setNewPost({...newPost, body });
   } 
 
-  function handleDeletePost(id: number): void {
-    api.delete(`posts/${id}`)
-      .then(response => {
-        const remainingPosts = posts.filter(post => post.id !== id);
-        setPosts(remainingPosts); 
+  function handleDeletePost(): void {
+    console.log({postToDelete});
+    api.delete(`posts/${postToDelete}`)
+      .then(() => {
+        const remainingPosts = posts.filter(post => post.id !== postToDelete);
+        setPosts(remainingPosts);
+        setPostToDelete(0);
       })
       .catch(() => console.log('erro'));
   }
@@ -62,9 +71,11 @@ const Home: React.FC = () => {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(response => {
+    })
+    .then(response => {
       setPosts([...posts, response.data])
-    }).catch(() => console.log('ERROOOO!!!!'));
+    })
+    .catch(() => console.log('ERROOOO!!!!'));
   }
 
   useEffect(() => {
@@ -93,7 +104,7 @@ const Home: React.FC = () => {
               <Post 
                 key={post.id} 
                 title={post.title} 
-                onDelete={handleDeletePost}
+                onDelete={toggleDeleteModal}
                 postId={post.id}
               >
                 {post.body}
@@ -103,14 +114,20 @@ const Home: React.FC = () => {
         </Main>
       </ScrollView>
 
-      <AddButton setModalIsVisible={toggleModal} />
+      <AddButton setModalIsVisible={toggleCreateModal} />
 
       <CreatePostModal 
         visible={createModalIsVisible} 
-        onClose={toggleModal} 
+        onClose={toggleCreateModal} 
         handleTitleChange={handleInputTitleChanges} 
         handleBodyChange={handleInputBodyChanges}
         handleCreatePost={handleCreatePost}
+      />
+
+      <DeletePostModal 
+        visible={deleteModalIsVisible} 
+        onClose={toggleDeleteModal} 
+        onDelete={handleDeletePost}
       />
       
     </Container>

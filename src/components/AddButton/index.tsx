@@ -1,18 +1,17 @@
 import React from 'react';
 
-import { RectButtonProperties } from 'react-native-gesture-handler';
+import { TouchableOpacityProperties } from 'react-native';
 
-import { Button, ButtonImage } from './styles';
+import { Button } from './styles';
 
-import AddImage from '../../assets/icons/add.png';
-
-interface ButtonProperties extends RectButtonProperties{
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+interface ButtonProperties extends TouchableOpacityProperties{
   setModalIsVisible(): void;
 }
 
 const AddButton: React.FC<ButtonProperties> = ({setModalIsVisible, ...rest}) => (
   <Button onPress={setModalIsVisible} {...rest}>
-    <ButtonImage source={AddImage} />
+    <Icon name="plus" size={30} color="#AFB3B0" />
   </Button>
 );
 

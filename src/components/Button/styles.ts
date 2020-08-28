@@ -8,13 +8,13 @@ export const Container = styled(TouchableOpacity)`
   border: 1px #00C100;
   border-radius: 4px;
 
-  background-color: #FFF;
+  background-color: #00C100;
 
   justify-content: center;
   align-items: center;
 `;
 
 export const ButtonText = styled.Text`
-  color: #000;
+  color: #FFF;
   font-family: 'Arial';
 `;
