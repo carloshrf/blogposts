@@ -1,6 +1,10 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
+interface InputProps {
+  isFocused: boolean;
+}
+
+export const Container = styled.View<InputProps>`
   width: 100%;
 
   border: 1px #AFB380;
@@ -11,14 +15,18 @@ export const Container = styled.View`
   padding: 0 8px;
   background: #FFF;
 
+  ${({ isFocused }) => isFocused && css`
+    border-color: #00C100;
+  `}
 `;
 
 export const TextInput = styled.TextInput`
   margin-top: 10px;
-  padding-top: 5px;
+  padding-top: 0px;
 
   color: #AFB380;
   flex: 1;
   font-size: 22px;
   height: 40px;
+
 `;

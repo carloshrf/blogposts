@@ -49,6 +49,7 @@ const Modal: React.FC<ModalProperties> = ({
             name="titulo" 
             placeholder="Título" 
             onChangeText={(text) => handleTitleChange(text)} 
+            returnKeyType="next"
           />
           <Input 
             height={120}
@@ -57,11 +58,10 @@ const Modal: React.FC<ModalProperties> = ({
             placeholder="Texto"
             multiline={true}
             numberOfLines={4}
-            onChangeText={(text) => handleBodyChange(text)} 
+            onChangeText={(text) => handleBodyChange(text)}
           />
           <ButtonsContainer>
             <Button onPress={onClose} inverted={true}>Cancelar</Button>
-            {console.log({hasNoContent})}
             <Button onPress={handleCreatePost} disabled={hasNoContent}>Adicionar</Button>
           </ButtonsContainer>
         </ModalContent>

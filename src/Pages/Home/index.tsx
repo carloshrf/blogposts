@@ -63,7 +63,6 @@ const Home: React.FC = () => {
     } else {
       setAddButtonIsDisabled(true);
     }
-    console.log(!!newPost.title, !!newPost.body);
   }
 
   function handleInputTitleChanges(title: string): void {
@@ -119,7 +118,8 @@ const Home: React.FC = () => {
     <Container>
       <SearchBar>
         <Input 
-          name="email" 
+          name="search"
+          autoCapitalize="none" 
           icon="text-box-search-outline" 
           placeholder="Buscar" 
           onChangeText={(text) => filterPosts(text)}
