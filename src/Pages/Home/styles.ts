@@ -18,6 +18,12 @@ export const Main = styled.View`
   width: 100%;
 `;
 
+export const NoResultsText = styled.Text`
+  color: #FFF;
+  font-size: 24px;
+  text-align: center;
+`;
+
 export const ErrorTitle = styled.Text`
   font-size: 18px;
   font-family: "PingFang-SC-Medium";

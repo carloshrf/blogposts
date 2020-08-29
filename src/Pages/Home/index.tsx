@@ -12,7 +12,7 @@ import InformationModal from '../../components/Modal/Information';
 
 import api from '../../services/api';
 
-import { Container, SearchBar, Main, ErrorTitle, ErrorMessage } from './styles';
+import { Container, SearchBar, Main, ErrorTitle, ErrorMessage, NoResultsText } from './styles';
 
 interface PostsData {
   body: string;
@@ -28,6 +28,7 @@ interface ErrorMessage {
 
 const Home: React.FC = () => {
   const [posts, setPosts] = useState<PostsData[]>([]);
+  const [inputValue, setInputValue] = useState('');
   const [createModalIsVisible, setCreateModalIsVisible] = useState(false);
   const [successCreateModalIsVisible, setSuccessCreateModalIsVisible] = useState(false);
   const [successDeleteModalIsVisible, setSuccessDeleteModalIsVisible] = useState(false);
@@ -66,7 +67,7 @@ const Home: React.FC = () => {
   }
 
   function filterPosts(text: string) {
-    api.get(`postsaa/${!!text ? `?title=${text}` : ''}`)
+    api.get(`posts/${!!text ? `?title=${text}` : ''}`)
     .then(({data}) => {
       setPosts(data);
     })
@@ -143,6 +144,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
+    setInputValue('');
     setCreateModalIsVisible(false);
     setDeleteModalIsVisible(false);
     setErrorModalIsVisible(false);
@@ -164,12 +166,17 @@ const Home: React.FC = () => {
   return (
     <Container>
       <SearchBar>
-        <Input 
+        <Input
+          value={inputValue}
           name="search"
           autoCapitalize="none" 
           icon="text-box-search-outline" 
           placeholder="Buscar" 
-          onChangeText={(text) => filterPosts(text)}
+          onChangeText={(text) => {
+              setInputValue(text);
+              filterPosts(text)
+            }
+          }
         />
       </SearchBar>
 
@@ -177,18 +184,20 @@ const Home: React.FC = () => {
         <Main>
           {!!loading 
             ? <Loading /> 
-            : posts.map(post => {
-              return (
-                <Post 
-                  key={post.id} 
-                  title={post.title} 
-                  onDelete={toggleDeleteModal}
-                  postId={post.id}
-                >
-                  {post.body}
-                </Post>
-              );
-            })
+            : posts.length <= 0 
+              ? <NoResultsText>Sem resultados</NoResultsText>
+              : posts.map(post => {
+                return (
+                  <Post 
+                    key={post.id} 
+                    title={post.title} 
+                    onDelete={toggleDeleteModal}
+                    postId={post.id}
+                  >
+                    {post.body}
+                  </Post>
+                );
+              })
           }
         </Main>
       </ScrollView>
