@@ -5,13 +5,14 @@ import { ScrollView } from 'react-native';
 import Input from '../../components/Input';
 import Post from '../../components/Post';
 import AddButton from '../../components/AddButton';
+import Loading from '../../components/Loading';
 import CreatePostModal from '../../components/Modal/CreatePost';
 import DeletePostModal from '../../components/Modal/DeletePost';
 import InformationModal from '../../components/Modal/Information';
 
 import api from '../../services/api';
 
-import { Container, SearchBar, Main } from './styles';
+import { Container, SearchBar, Main, ErrorTitle, ErrorMessage } from './styles';
 
 interface PostsData {
   body: string;
@@ -20,14 +21,22 @@ interface PostsData {
   userId: number;
 }
 
+interface ErrorMessage {
+  errorTitle: string;
+  errorMessage: string;
+}
+
 const Home: React.FC = () => {
   const [posts, setPosts] = useState<PostsData[]>([]);
   const [createModalIsVisible, setCreateModalIsVisible] = useState(false);
   const [successCreateModalIsVisible, setSuccessCreateModalIsVisible] = useState(false);
   const [successDeleteModalIsVisible, setSuccessDeleteModalIsVisible] = useState(false);
   const [deleteModalIsVisible, setDeleteModalIsVisible] = useState(false);
+  const [errorModalIsVisible, setErrorModalIsVisible] = useState(false);
+  const [errorModalMessage, setErrorModalMessage] = useState({} as ErrorMessage);
   const [postToDelete, setPostToDelete] = useState(0);
   const [addButtonIsDisabled, setAddButtonIsDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [newPost, setNewPost] = useState({
     body: '',
     title: '',
@@ -42,6 +51,11 @@ const Home: React.FC = () => {
     setSuccessCreateModalIsVisible(!successCreateModalIsVisible);
   }
 
+  function toggleErrorModal(): void {
+    setErrorModalIsVisible(!errorModalIsVisible);
+    setErrorModalMessage({ errorTitle: '', errorMessage: '' });
+  }
+
   function toggleDeleteSuccessModal(): void {
     setSuccessDeleteModalIsVisible(!successDeleteModalIsVisible);
   }
@@ -52,9 +66,17 @@ const Home: React.FC = () => {
   }
 
   function filterPosts(text: string) {
-    api.get(`posts/${!!text ? `?title=${text}` : ''}`).then(({data}) => {
+    api.get(`postsaa/${!!text ? `?title=${text}` : ''}`)
+    .then(({data}) => {
       setPosts(data);
-    }).catch(() => console.log('ERROO!!!'));
+    })
+    .catch(err => {
+      setErrorModalIsVisible(true);
+      setErrorModalMessage({
+        errorTitle: 'Erro consultar posts',
+        errorMessage: err.message
+      });
+    });
   };
 
   function verifyCreateContent() {
@@ -74,7 +96,6 @@ const Home: React.FC = () => {
   } 
 
   function handleDeletePost(): void {
-    console.log({postToDelete});
     api.delete(`posts/${postToDelete}`)
       .then(() => {
         const remainingPosts = posts.filter(post => post.id !== postToDelete);
@@ -83,7 +104,14 @@ const Home: React.FC = () => {
         setDeleteModalIsVisible(false);
         setSuccessDeleteModalIsVisible(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setDeleteModalIsVisible(false);
+        setErrorModalIsVisible(true);
+        setErrorModalMessage({
+          errorTitle: 'Erro ao remover post',
+          errorMessage: err.message
+        });
+      });
   }
 
   function handleCreatePost(): void {
@@ -97,7 +125,14 @@ const Home: React.FC = () => {
       setCreateModalIsVisible(false);
       setSuccessCreateModalIsVisible(true);
     })
-    .catch(() => console.log('ERROOOO!!!!'));
+    .catch((err) => {
+      setCreateModalIsVisible(false);
+      setErrorModalIsVisible(true);
+      setErrorModalMessage({
+        errorTitle: 'Erro ao criar post',
+        errorMessage: err.message
+      });
+    });
 
     setAddButtonIsDisabled(true);
   }
@@ -107,11 +142,23 @@ const Home: React.FC = () => {
   }, [newPost]);
 
   useEffect(() => {
+    setLoading(true);
+    setCreateModalIsVisible(false);
+    setDeleteModalIsVisible(false);
+    setErrorModalIsVisible(false);
+
     api.get('posts').then(response => {
-      setPosts(response.data)
-    }).catch(() => {
-      console.log('Erro ao consultar posts');
+      setPosts(response.data);
+      setLoading(false);
+    }).catch(err => {
+      setLoading(false);
+      setErrorModalIsVisible(true);
+      setErrorModalMessage({
+        errorTitle: 'Erro ao buscar posts',
+        errorMessage: err.message
+      });
     });
+
   }, []);
 
   return (
@@ -128,24 +175,26 @@ const Home: React.FC = () => {
 
       <ScrollView>
         <Main>
-          {posts.map(post => {
-            return (
-              <Post 
-                key={post.id} 
-                title={post.title} 
-                onDelete={toggleDeleteModal}
-                postId={post.id}
-              >
-                {post.body}
-              </Post>
-            );
-          })}
+          {!!loading 
+            ? <Loading /> 
+            : posts.map(post => {
+              return (
+                <Post 
+                  key={post.id} 
+                  title={post.title} 
+                  onDelete={toggleDeleteModal}
+                  postId={post.id}
+                >
+                  {post.body}
+                </Post>
+              );
+            })
+          }
         </Main>
       </ScrollView>
 
       <AddButton setModalIsVisible={toggleCreateModal} />
 
-          {console.log({homehasContent: addButtonIsDisabled})}
       <CreatePostModal 
         visible={createModalIsVisible}
         hasNoContent={addButtonIsDisabled}
@@ -167,6 +216,11 @@ const Home: React.FC = () => {
 
       <InformationModal visible={successDeleteModalIsVisible} onClose={toggleDeleteSuccessModal}>
         Post removido com sucesso!
+      </InformationModal>
+
+      <InformationModal visible={errorModalIsVisible} onClose={toggleErrorModal} >
+        <ErrorTitle>{errorModalMessage.errorTitle} {"\n\n"}</ErrorTitle>
+        <ErrorMessage>{errorModalMessage.errorMessage}</ErrorMessage>
       </InformationModal>
       
     </Container>

@@ -17,7 +17,6 @@ const Input: React.FC<InputProps> = ({name, icon, marginBottom, height= 50, ...r
 
   function handleFocus(): void {
     setIsFocused(!isFocused);
-    console.log('fera');
   }
 
   return(

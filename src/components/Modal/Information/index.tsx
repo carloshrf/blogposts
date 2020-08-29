@@ -14,7 +14,7 @@ import {
 
 interface ModalProperties extends ModalProps {
   visible: boolean;
-  children: string;
+  children: string | Element;
   onClose(): void;
 }
 

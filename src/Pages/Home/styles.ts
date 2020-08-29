@@ -17,3 +17,13 @@ export const Main = styled.View`
   padding: 0 30px;
   width: 100%;
 `;
+
+export const ErrorTitle = styled.Text`
+  font-size: 18px;
+  font-family: "PingFang-SC-Medium";
+`;
+
+export const ErrorMessage = styled.Text`
+  font-size: 14px;
+  font-family: "Arial";
+`;
