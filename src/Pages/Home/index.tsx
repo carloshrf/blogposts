@@ -67,11 +67,15 @@ const Home: React.FC = () => {
   }
 
   function filterPosts(text: string) {
+    setLoading(true);
+
     api.get(`posts/${!!text ? `?title=${text}` : ''}`)
     .then(({data}) => {
       setPosts(data);
+      setLoading(false);
     })
     .catch(err => {
+      setLoading(false);
       setErrorModalIsVisible(true);
       setErrorModalMessage({
         errorTitle: 'Erro consultar posts',
