@@ -10,7 +10,7 @@ Aplicação mobile desenvolvida com React Native e typescript. Se baseia numa p�
 
 💅 Styled-components
 
- Axios
+🔗 Axios
 
 ## Rotas
 
