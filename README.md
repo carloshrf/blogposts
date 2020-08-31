@@ -10,6 +10,8 @@ Aplicação mobile desenvolvida com React Native e typescript. Se baseia numa p�
 
 💅 Styled-components
 
+ Axios
+
 ## Rotas
 
 GET POST
@@ -45,8 +47,19 @@ ou
 npm install 
 ```
 para que então os repositórios necessários sejam baixados. Para executar os projetos web e server, basta em sua raiz executar 
+
+para gerar a build da app, executar:
 ```bash
-yarn start ou npm start
+$ yarn android 
+ou 
+$ npm android
+```
+
+e, caso não inicie automaticamente, iniciar o metro bundler com:
+```bash
+$ yarn start 
+ou 
+$ npm start
 ```
 Abaixo seguem algumas amostras das telas web.
 
