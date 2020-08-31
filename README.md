@@ -23,14 +23,14 @@ GET
 /posts/:id
 ```
 
-Estrutura da resposta:
+Estrutura dp post:
 ```bash
 [
   {
-    body: string;
-    title: string;
-    id: number;
-    userId: number;
+    body: string,
+    title: string,
+    id: number,
+    userId: number,
   }
 ]
 ```
