@@ -61,8 +61,14 @@ $ yarn start
 ou 
 $ npm start
 ```
-Abaixo seguem algumas amostras das telas web.
 
+Baseando-se no modelo:
+
+<p align="center">
+<img  src="https://cdn.discordapp.com/attachments/700348106419470369/747478882550153346/unknown.png"  width="800"/>
+</p>
+
+Abaixo seguem algumas amostras das telas web.
 
 <p align="center">
 <img  src="https://github.com/carloshrf/blogposts/blob/master/public/images/create.png?raw=true"  width="300"/>
